@@ -39,7 +39,7 @@ module Jekyll
       def collate(posts, pattern)
         collated = {}
         posts.each do |post|
-          key = post.data['date'].strftime(pattern)
+          key = post.date.strftime(pattern)
           collated[key] ||= []
           collated[key] << post
         end

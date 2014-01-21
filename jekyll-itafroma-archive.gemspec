@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'jekyll-itafroma-archive'
-  s.version     = '0.1.1'
-  s.date        = '2014-01-03'
+  s.version     = '0.1.2'
+  s.date        = '2014-01-21'
   s.summary     = 'Jekyll plugin to create a set of archive pages.'
   s.description = 'Jekyll plugin to create a set of archive pages.'
   s.authors     = ['Mark Trapp']
