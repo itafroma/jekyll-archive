@@ -21,10 +21,11 @@ module Jekyll
         @base = base
         @dir = posts.first.date.strftime(pattern)
         @name = 'index.html'
+        @config = site.config['archive']
 
         process(@name)
 
-        layout = site.config['archive']['layout'] || 'archive'
+        layout = @config['layout'] || 'archive'
         read_yaml(File.join(base, '_layouts'), "#{layout}.html")
 
         data['posts'] = posts
@@ -32,11 +33,19 @@ module Jekyll
           'value' => posts.first.date,
           'pattern' => pattern,
         }
+        data['title'] = title
       end
 
       def url
         base = site.config['archive']['path'] || '/'
         File.join(base, @dir, 'index.html')
+      end
+
+      def title
+        tokenized_title = @config['title'] || 'Blog archive - :date'
+        date = data['date']['value']
+        pattern = data['date']['pattern']
+        tokenized_title.gsub(':date', date.strftime(pattern))
       end
 
       def to_liquid
