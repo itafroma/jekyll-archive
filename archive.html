@@ -7,7 +7,7 @@ license: MIT
         <title>{{ page.title }}</title>
     </head>
     <body>
-        {% for post in page.posts reversed %}
+        {% for post in page.archive.posts reversed %}
         <article>
             <h2><a href="{{post.url}}">{{ post.title }}</a></h2>
         </article>

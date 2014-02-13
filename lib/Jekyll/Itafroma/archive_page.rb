@@ -28,11 +28,11 @@ module Jekyll
         layout = @config['layout'] || 'archive'
         read_yaml(File.join(base, '_layouts'), "#{layout}.html")
 
-        data['posts'] = posts
-        data['date'] = {
-          'value' => posts.first.date,
-          'pattern' => pattern,
+        data['archive'] = {
+          'date_pattern' => pattern,
+          'posts' => posts
         }
+        data['date'] = posts.first.date
         data['title'] = title
       end
 
@@ -43,8 +43,8 @@ module Jekyll
 
       def title
         tokenized_title = @config['title'] || 'Blog archive - :date'
-        date = data['date']['value']
-        pattern = data['date']['pattern']
+        date = data['date']
+        pattern = data['archive']['date_pattern']
         tokenized_title.gsub(':date', date.strftime(pattern))
       end
 
