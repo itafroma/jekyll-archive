@@ -2,7 +2,7 @@
 # An archive listing pager.
 #
 # Author:: Mark Trapp
-# Copyright: Copyright (c) 2013 Mark Trapp
+# Copyright: Copyright (c) 2014 Mark Trapp
 # License:: MIT
 # Acknowledgements:: Inspired by the work done by nlindley and ilkka on Github:
 #     https://gist.github.com/nlindley/6409459
