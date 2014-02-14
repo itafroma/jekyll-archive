@@ -22,8 +22,8 @@ module Jekyll
       def self.paginate_archive_path(posts, num_page)
         return posts.first.url if num_page.nil?
         return nil if num_page < 1
-        return nil if num_page >= posts.size
-        posts[num_page].url
+        return nil if num_page > posts.size
+        posts[num_page - 1].url
       end
 
       # Initialize a new Archive Pager.

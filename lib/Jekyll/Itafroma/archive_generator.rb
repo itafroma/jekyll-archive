@@ -36,7 +36,7 @@ module Jekyll
         end
 
         pages.each_with_index do |page, index|
-          page.pager = ArchivePager.new(site, index, pages, pages.size)
+          page.pager = ArchivePager.new(site, index + 1, pages, pages.size)
         end
 
         pages
