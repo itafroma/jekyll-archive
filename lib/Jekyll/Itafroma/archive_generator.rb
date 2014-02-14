@@ -10,9 +10,16 @@
 
 module Jekyll
   module Itafroma
+    # Generator for archive listings.
     class ArchiveGenerator < Generator
+      # This generator is safe from arbitrary code execution.
       safe true
 
+      # Generate archive pages.
+      #
+      # site - The site.
+      #
+      # Returns nothing.
       def generate(site)
         layout = site.config['archive']['layout'] || 'archive'
         if site.layouts.key? layout
@@ -28,14 +35,33 @@ module Jekyll
 
       private
 
+      # Generate an archive page group.
+      #
+      # site    - The site.
+      # posts   - The Posts to include in the archive.
+      # pattern - The date pattern to collate the archive on
+      #
+      # Returns an Array of archive Pages.
       def generate_archive_pages(site, posts, pattern)
         pages = []
+
         collate(posts, pattern).each do |_, collated_posts|
           pages << ArchivePage.new(site, site.source, pattern, collated_posts)
         end
+
+        pages.each_with_index do |page, index|
+          page.pager = ArchivePager.new(site, index + 1, pages, pages.size)
+        end
+
         pages
       end
 
+      # Collate an Array of Posts by a date pattern.
+      #
+      # posts - The Posts to collate
+      # pattern - The date pattern to collate the Posts on
+      #
+      # Returns a collated Hash of Posts.
       def collate(posts, pattern)
         collated = {}
         posts.each do |post|
