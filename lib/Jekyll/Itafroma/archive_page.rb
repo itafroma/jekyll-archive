@@ -16,6 +16,7 @@ module Jekyll
     # Represents an archive listing page.
 
     class ArchivePage < Page
+
       def initialize(site, base, date_pattern, posts)
         @site = site
         @config = site.config['archive']
