@@ -30,9 +30,15 @@ module Jekyll
 
       def generate_archive_pages(site, posts, pattern)
         pages = []
+
         collate(posts, pattern).each do |_, collated_posts|
           pages << ArchivePage.new(site, site.source, pattern, collated_posts)
         end
+
+        pages.each_with_index do |page, index|
+          page.pager = ArchivePager.new(site, index, pages, pages.size)
+        end
+
         pages
       end
 
