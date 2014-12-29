@@ -12,7 +12,6 @@ Gem::Specification.new do |s|
     'lib/jekyll/itafroma/archive_page.rb',
     'lib/jekyll/itafroma/archive_pager.rb',
   ]
-  s.homepage    =
-    'http://marktrapp.com/projects/jekyll-archive'
-  s.license       = 'MIT'
+  s.homepage    = 'http://marktrapp.com/projects/jekyll-archive'
+  s.license     = 'MIT'
 end
