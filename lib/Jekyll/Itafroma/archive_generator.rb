@@ -50,9 +50,6 @@ module Jekyll
         end
 
         pages.each_with_index do |page, index|
-          # Deprecated: will be removed in 0.4.0 or later
-          page.pager = ArchivePager.new(site, index + 1, pages, pages.size)
-
           page.data['archive'].merge!({'paginator' => ArchivePager.new(site, index + 1, pages, pages.size)})
         end
 
