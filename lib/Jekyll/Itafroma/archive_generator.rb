@@ -5,7 +5,7 @@
 # contains a post.
 #
 # Author:: Mark Trapp
-# Copyright: Copyright (c) 2013-2014 Mark Trapp
+# Copyright: Copyright (c) 2013-2015 Mark Trapp
 # License:: MIT
 
 module Jekyll
@@ -21,15 +21,28 @@ module Jekyll
       #
       # Returns nothing.
       def generate(site)
-        layout = site.config['archive']['layout'] || 'archive'
-        if site.layouts.key? layout
-          exclude_categories = site.config['archive']['exclude'] || []
-          posts = site.posts.select do |post|
-            (post.categories & exclude_categories).empty?
+        archives = site.config['archive'] || []
+
+        if archives.is_a? Hash
+          puts 'Warning: the configuration format used for Jekyll Archive Generator is deprecated. Please see README for the new format.'
+          archives = [archives]
+        end
+
+        archives.each do |archive|
+          layout = archive['layout'] || 'archive'
+          if site.layouts.key? layout
+            path = archive['path'] || '/'
+            exclude_categories = archive['exclude'] || []
+            title = archive['title'] || 'Blog archive - :date'
+
+            posts = site.posts.select do |post|
+              (post.categories & exclude_categories).empty?
+            end
+
+            site.pages += generate_archive_pages(site, posts, layout, path, title, '%Y/%m/%d')
+            site.pages += generate_archive_pages(site, posts, layout, path, title, '%Y/%m')
+            site.pages += generate_archive_pages(site, posts, layout, path, title, '%Y')
           end
-          site.pages += generate_archive_pages(site, posts, '%Y/%m/%d')
-          site.pages += generate_archive_pages(site, posts, '%Y/%m')
-          site.pages += generate_archive_pages(site, posts, '%Y')
         end
       end
 
@@ -39,14 +52,17 @@ module Jekyll
       #
       # site    - The site.
       # posts   - The Posts to include in the archive.
+      # layout  - The layout to use for the archive page
+      # path    - The path to use for the archive page
+      # title   - The tokenized title to use for the archive page
       # pattern - The date pattern to collate the archive on
       #
       # Returns an Array of archive Pages.
-      def generate_archive_pages(site, posts, pattern)
+      def generate_archive_pages(site, posts, layout, path, title, pattern)
         pages = []
 
         collate(posts, pattern).each do |_, collated_posts|
-          pages << ArchivePage.new(site, site.source, pattern, collated_posts)
+          pages << ArchivePage.new(site, site.source, layout, path, title, pattern, collated_posts)
         end
 
         pages.each_with_index do |page, index|

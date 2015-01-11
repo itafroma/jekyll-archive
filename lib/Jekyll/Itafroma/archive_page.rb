@@ -2,7 +2,7 @@
 # An archive listing page.
 #
 # Author:: Mark Trapp
-# Copyright: Copyright (c) 2013-2014 Mark Trapp
+# Copyright: Copyright (c) 2013-2015 Mark Trapp
 # License:: MIT
 # Acknowledgements:: Inspired by the work done by nlindley and ilkka on Github:
 #     https://gist.github.com/nlindley/6409459
@@ -18,13 +18,18 @@ module Jekyll
       #
       # site         - The site.
       # base         - The path to the site's root
+      # layout       - The layout to use for the archive page
+      # path         - The path to use for the archive page
+      # title        - The tokenized title to use for the archive page
       # date_pattern - The pattern of the date the posts are collated on
       # posts        - The posts to be added to the ArchivePage.
-      def initialize(site, base, date_pattern, posts)
+      def initialize(site, base, layout, path, title, date_pattern, posts)
         @site = site
-        @config = site.config['archive']
         @posts = posts
 
+        @layout = layout
+        @path = path
+        @title = title
         @date_pattern = date_pattern
         @base = base
         @dir = dir
@@ -32,8 +37,7 @@ module Jekyll
 
         process(@name)
 
-        layout = @config['layout'] || 'archive'
-        read_yaml(File.join(base, '_layouts'), "#{layout}.html")
+        read_yaml(File.join(base, '_layouts'), "#{@layout}.html")
 
         populate_data!
       end
@@ -54,16 +58,14 @@ module Jekyll
       #
       # Returns a String containing the ArchivePage title.
       def title
-        tokenized_title = @config['title'] || 'Blog archive - :date'
-        tokenized_title.gsub(':date', date.strftime(@date_pattern))
+        @title.gsub(':date', date.strftime(@date_pattern))
       end
 
       # Generate the ArchivePage url.
       #
       # Returns a String containing the ArchivePage url.
       def url
-        base = @config['path'] || '/'
-        File.join(base, date.strftime(@date_pattern), 'index.html')
+        File.join(@path, date.strftime(@date_pattern), 'index.html')
       end
 
       # Add the ArchivePage-specific data to the regular Page data.
