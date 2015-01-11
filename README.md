@@ -7,7 +7,7 @@ example, if you have a permalink structure like `blog/2014/01/01/title, URL
 hacking won't work because going to `blog/2014` will return 404 Page Not Found.
 
 Jekyll Archive Generator fixes that by generating all the necessary archive
-pages for each part your blog URL structure.
+pages for each part of your blog URL structure.
 
 ## Installation
 
