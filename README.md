@@ -25,14 +25,19 @@ gems: ['jekyll/itafroma/archive']
 
 ## Configuration
 
-This plugin has a few configuration options:
+This plugin's configuration is contained within the `archive` key and supports
+multiple archives:
 
 ```yaml
 archive:
-    layout: archive
-    path: /blog
-    title: Blog Archive - :date
-    exclude: ['projects']
+    - layout: archive_blog
+      path: /blog
+      title: Blog Archive - :date
+      exclude: ['news']
+    - layout: archive_news
+      path: /news
+      title: News Archive - :date
+      exclude: ['blog']
 ```
 
 * **layout**: The name of the layout to use for the archive pages. An example
