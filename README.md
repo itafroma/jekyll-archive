@@ -33,11 +33,15 @@ archive:
     - layout: archive_blog
       path: /blog
       title: Blog Archive - :date
-      exclude: ['news']
+      exclude: 
+        categories: ['news']
+        tags: ['drafts']
     - layout: archive_news
       path: /news
       title: News Archive - :date
-      exclude: ['blog']
+      exclude: 
+        categories: ['blog']
+        tags: ['lifestyle', 'old']
 ```
 
 * **layout**: The name of the layout to use for the archive pages. An example
@@ -45,7 +49,10 @@ archive:
 * **path:** The path where the archive should be generated.
 * **title:** The title of he archive pages. It has one token, `:date`, that will
   be replaced with a pretty version of the date.
-* **exclude:** An array of categories to exclude from the archive.
+* **exclude:** A sequence of front matter keys used to exclude posts from the
+  archive. Each key in the sequence is an array of strings for that specific 
+  key to exclude. For example, `categories: ['foo', 'bar']` will exclude any
+  post that has the `foo` or `bar` category.
 
 ## Acknowledgements
 

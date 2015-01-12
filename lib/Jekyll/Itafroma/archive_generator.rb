@@ -32,11 +32,14 @@ module Jekyll
           layout = archive['layout'] || 'archive'
           if site.layouts.key? layout
             path = archive['path'] || '/'
-            exclude_categories = archive['exclude'] || []
             title = archive['title'] || 'Blog archive - :date'
 
-            posts = site.posts.select do |post|
-              (post.categories & exclude_categories).empty?
+            posts = site.posts
+            exclusions = archive['exclude'] || {}
+            exclusions.each do |key, exclusion|
+              posts.reject! do |post|
+                (post[key] & exclusion).any?
+              end
             end
 
             site.pages += generate_archive_pages(site, posts, layout, path, title, '%Y/%m/%d')
