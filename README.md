@@ -2,7 +2,7 @@
 
 This plugin creates a set of archive pages for a Jekyll website.
 
-Oddly, Jekyll doesn't include a date-based archive for posts out of the box. For example, if you have a permalink structure like `blog/2014/01/01/title, URL hacking won't work because going to `blog/2014` will return 404 Page Not Found.
+Oddly, Jekyll doesn't include a date-based archive for posts out of the box. For example, if you have a permalink structure like `blog/2014/01/01/title`, URL hacking won't work because going to `blog/2014` will return 404 Page Not Found.
 
 Jekyll Archive Generator fixes that by generating all the necessary archive pages for each part of your blog URL structure.
 
