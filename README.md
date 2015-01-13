@@ -48,7 +48,7 @@ All directives are optional.
 
 #### layout
 
-The name of the layout to use for the archive pages. An example layout named `archive.html` is included in this repository.
+The name of the layout to use for the archive pages. An example layout named `archive.html` is included in this repository. See **Usage** below for more information.
 
 **Default value:** `archive`
 
@@ -84,33 +84,55 @@ Exclusion filters are run *after* inclusion criteria specified by the `include` 
 
 **Default value:** empty (no posts will be excluded)
 
+## Usage
+
+An example layout named `archive.html` is included in this repository. Two variables are exposed to the archive layout:
+
+### page.archive.posts
+
+The collection of posts for the specific time period in the archive. For example, `page.archive.posts` will only contain posts from May 2014 in the May 2014 archive page.
+
+### page.archive.paginator
+
+A paginator to navigate between archive pages at a specific date "resolution". For example, on the archive page for May 2014, the paginator will let you navigate between months. On the archive page for May 26, 2014, the paginator will let you navigate between days.
+
+This paginator contains many of the same values found in [Jekyll's native paginator][1] (description of variables copied from that page):
+
+* `page.archive.paginator.page`: the current page number
+* `page.archive.paginator.total_pages`: the number of pagination pages
+* `page.archive.paginator.previous_page`: the page number of the previous pagination page, or `nil` if no previous page exists
+* `page.archive.paginator.previous_page_path`: the path of previous pagination page, or `nil` if no previous page exists
+* `page.archive.paginator.next_page`: the page number of the next pagination page, or `nil` if no subsequent page exists
+* `page.archive.paginator.next_page_path`: the path of next pagination page, or `nil` if no subsequent page exists
+
 ## Acknowledgments
 
-This plug is inspired by the work done by [Nicholas Lindley][1]:
+This plug is inspired by the work done by [Nicholas Lindley][2]:
 
-* [archivepage.rb][2]
-* [archivegenerator.rb][3]
+* [archivepage.rb][3]
+* [archivegenerator.rb][4]
 
-And by [Ilkka Laukkanen][4]:
+And by [Ilkka Laukkanen][5]:
 
-* [archivepage.rb][5]
-* [archivegenerator.rb][6]
+* [archivepage.rb][6]
+* [archivegenerator.rb][7]
 
 ## Copyright and license
 
-This plugin is copyright © 2013–2015 [Mark Trapp][7]. All rights reserved. It is made available via the MIT license. A copy of the license can be found in the `LICENSE` file.
+This plugin is copyright © 2013–2015 [Mark Trapp][8]. All rights reserved. It is made available via the MIT license. A copy of the license can be found in the `LICENSE` file.
 
 ## Related links
 
-* [Canonical project page][8]
-* [RubyGems project page][9]
+* [Canonical project page][9]
+* [RubyGems project page][10]
 
-[1]: http://www.thisoneplace.com "Nicholas Lindley’s website"
-[2]: https://gist.github.com/nlindley/6409441 "Nicholas Lindley’s archivegenerator.rb"
-[3]: https://gist.github.com/nlindley/6409459 "Nicholas Lindley’s archivepage.rb"
-[4]: http://ilkka.github.io "Ilkka Laukkanen’s website"
-[5]: https://gist.github.com/ilkka/707909 "Ilkka Laukkanen’s archivegenerator.rb"
-[6]: https://gist.github.com/ilkka/707020 "Ilkka Laukkanen’s archivepage.rb"
-[7]: http://marktrapp.com "Mark Trapp’s website"
-[8]: http://marktrapp.com/projects/jekyll-archive "jekyll-archive project page"
-[9]: https://rubygems.org/gems/jekyll-itafroma-archive "RubyGems project page"
+[1]: http://jekyllrb.com/docs/pagination/ "Jekyll Documentation — Pagination"
+[2]: http://www.thisoneplace.com "Nicholas Lindley’s website"
+[3]: https://gist.github.com/nlindley/6409441 "Nicholas Lindley’s archivegenerator.rb"
+[4]: https://gist.github.com/nlindley/6409459 "Nicholas Lindley’s archivepage.rb"
+[5]: http://ilkka.github.io "Ilkka Laukkanen’s website"
+[6]: https://gist.github.com/ilkka/707909 "Ilkka Laukkanen’s archivegenerator.rb"
+[7]: https://gist.github.com/ilkka/707020 "Ilkka Laukkanen’s archivepage.rb"
+[8]: http://marktrapp.com "Mark Trapp’s website"
+[9]: http://marktrapp.com/projects/jekyll-archive "jekyll-archive project page"
+[10]: https://rubygems.org/gems/jekyll-itafroma-archive "RubyGems project page"
