@@ -34,7 +34,17 @@ module Jekyll
             path = archive['path'] || '/'
             title = archive['title'] || 'Blog archive - :date'
 
-            posts = site.posts
+            inclusions = archive['include'] || {}
+            posts = if inclusions.empty? 
+              site.posts
+            else 
+              site.posts.select do |post|
+                inclusions.any? do |key, inclusion|
+                  (post[key] & inclusion).any?
+                end
+              end
+            end
+
             exclusions = archive['exclude'] || {}
             exclusions.each do |key, exclusion|
               posts.reject! do |post|

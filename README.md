@@ -33,6 +33,8 @@ archive:
     - layout: archive_blog
       path: /blog
       title: Blog Archive - :date
+      include:
+        tags: ['PHP']
       exclude: 
         categories: ['news']
         tags: ['drafts']
@@ -49,10 +51,17 @@ archive:
 * **path:** The path where the archive should be generated.
 * **title:** The title of he archive pages. It has one token, `:date`, that will
   be replaced with a pretty version of the date.
+* **include:** A mapping of front matter keys used to "whitelist" posts for the
+  archive. Each key in the mapping is an array of strings for that specific key
+  to include. This is conjunctive: if a post matches at least one condition,
+  it will be included in the archive. For example, `categories: ['foo', 'bar']` 
+  will ensure that only posts in the `foo` or `bar` categories will be included
+  in the archive.
 * **exclude:** A sequence of front matter keys used to exclude posts from the
   archive. Each key in the sequence is an array of strings for that specific 
   key to exclude. For example, `categories: ['foo', 'bar']` will exclude any
-  post that has the `foo` or `bar` category.
+  post that has the `foo` or `bar` category. Exclusion filters are run *after*
+  inclusion criteria specified by `include`.
 
 ## Acknowledgements
 
