@@ -52,9 +52,10 @@ module Jekyll
               end
             end
 
-            site.pages += generate_archive_pages(site, posts, layout, path, title, '%Y/%m/%d')
-            site.pages += generate_archive_pages(site, posts, layout, path, title, '%Y/%m')
-            site.pages += generate_archive_pages(site, posts, layout, path, title, '%Y')
+            date_patterns = ['%Y/%m/%d', '%Y/%m', '%Y']
+            date_patterns.each do |pattern|
+              site.pages += generate_archive_pages(site, posts, layout, path, title, pattern)
+            end
           end
         end
       end
