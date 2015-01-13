@@ -63,7 +63,7 @@ archive:
   post that has the `foo` or `bar` category. Exclusion filters are run *after*
   inclusion criteria specified by `include`.
 
-## Acknowledgements
+## Acknowledgments
 
 This plug is inspired by the work done by [Nicholas Lindley][1]:
 
