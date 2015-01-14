@@ -1,6 +1,6 @@
 # Jekyll Archive Generator
 
-**Deprecation notice:** There is now an official archive plugin, [Jekyll Archives][1]. To avoid confusion and duplication of effort, 0.4.0 is the final release of Jekyll Archive Generator and you should use Jekyll Archives instead.
+**Deprecation notice:** *There is now an official archive plugin, [Jekyll Archives][1]. To avoid confusion and duplication of effort, 0.4.0 is planned to be the final release of Jekyll Archive Generator and you should probably use Jekyll Archives instead.*
 
 This plugin creates a set of archive pages for a Jekyll website.
 
