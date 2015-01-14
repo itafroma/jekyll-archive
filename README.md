@@ -28,25 +28,48 @@ This plugin's configuration is contained within the `archive` key and supports m
 
 ```yaml
 archive:
-    - layout: archive_blog
-      path: /blog
-      title: Blog Archive - :date
+    - path: /blog/:year
+      layout: archive_blog
       include:
         tags: ['PHP']
       exclude:
         categories: ['news']
         tags: ['drafts']
-    - layout: archive_news
-      path: /news
-      title: News Archive - :date
+    - path: /blog/:year/:month
+      layout: archive_blog
+      include:
+        tags: ['PHP']
       exclude:
-        categories: ['blog']
-        tags: ['lifestyle', 'old']
+        categories: ['news']
+        tags: ['drafts']
+    - path: /blog/:year/:month/:day
+      layout: archive_blog
+      include:
+        tags: ['PHP']
+      exclude:
+        categories: ['news']
+        tags: ['drafts']
 ```
 
 ### Directives
 
 All directives are optional.
+
+#### path
+
+The tokenized path where the archive should be generated. For example, `/blog/:year` will generate a set of archive pages corresponding to post years: `/blog/2010`, `/blog/2011`, and so on. The following tokens are available: 
+
+* `year`: four-digit year
+* `short_year`: two-digit year
+* `month`: month with leading zeros
+* `i_month`: month without leading zeros
+* `short_month`: three-letter, capitalized month name (e.g. "Jan")
+* `long_month`: full, capitalized month name (e.g. "January")
+* `day`: day with leading zeros
+* `i_day`: day without leading zeros
+* `y_day`: day of the year (e.g. 252)
+
+**Default value:** `/`
 
 #### layout
 
@@ -54,17 +77,12 @@ The name of the layout to use for the archive pages. An example layout named `ar
 
 **Default value:** `archive`
 
-#### path
-
-The path where the archive should be generated.
-
-**Default value:** `/`
 
 #### title
 
-The title of the archive pages. It has one token, `:date`, that will be replaced with a pretty version of the date.
+The title of the archive pages.
 
-**Default value:** `Blog archive — :date`
+**Default value:** `Blog archive`
 
 #### include
 

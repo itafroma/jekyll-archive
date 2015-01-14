@@ -23,14 +23,13 @@ module Jekyll
       # title        - The tokenized title to use for the archive page
       # date_pattern - The pattern of the date the posts are collated on
       # posts        - The posts to be added to the ArchivePage.
-      def initialize(site, base, layout, path, title, date_pattern, posts)
+      def initialize(site, base, layout, path, title, posts)
         @site = site
         @posts = posts
 
         @layout = layout
         @path = path
         @title = title
-        @date_pattern = date_pattern
         @base = base
         @dir = dir
         @name = 'index.html'
@@ -44,28 +43,25 @@ module Jekyll
 
       # Generate the start date of the archive.
       #
-      # To determine the archive's start date, the date of the first post is
-      # converted to a string using `@date_pattern`. Doing this will clear any
-      # precision beyond what's specified in `@date_pattern`.
+      # The date of the first post is used for the start date.
       #
       # Returns a DateTime containing the archive's start date.
       def date
-        date_string = @posts.first.date.strftime(@date_pattern)
-        DateTime.strptime(date_string, @date_pattern)
+        @posts.first.date
       end
 
       # Generate the ArchivePage title.
       #
       # Returns a String containing the ArchivePage title.
       def title
-        @title.gsub(':date', date.strftime(@date_pattern))
+        @title
       end
 
       # Generate the ArchivePage url.
       #
       # Returns a String containing the ArchivePage url.
       def url
-        File.join(@path, date.strftime(@date_pattern), 'index.html')
+        ArchiveURL.new(@posts.first).url(@path)
       end
 
       # Add the ArchivePage-specific data to the regular Page data.
@@ -75,7 +71,6 @@ module Jekyll
         data.merge!('date' => date,
                     'title' => title,
                     'archive' => {
-                      'date_pattern' => @date_pattern,
                       'posts' => @posts
                     })
       end

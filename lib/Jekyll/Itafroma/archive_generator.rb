@@ -32,7 +32,7 @@ module Jekyll
           layout = archive['layout'] || 'archive'
           if site.layouts.key? layout
             path = archive['path'] || '/'
-            title = archive['title'] || 'Blog archive - :date'
+            title = archive['title'] || 'Blog archive'
 
             inclusions = archive['include'] || {}
             posts = if inclusions.empty? 
@@ -52,10 +52,7 @@ module Jekyll
               end
             end
 
-            date_patterns = ['%Y/%m/%d', '%Y/%m', '%Y']
-            date_patterns.each do |pattern|
-              site.pages += generate_archive_pages(site, posts, layout, path, title, pattern)
-            end
+            site.pages += generate_archive_pages(site, posts, layout, path, title)
           end
         end
       end
@@ -69,14 +66,13 @@ module Jekyll
       # layout  - The layout to use for the archive page
       # path    - The path to use for the archive page
       # title   - The tokenized title to use for the archive page
-      # pattern - The date pattern to collate the archive on
       #
       # Returns an Array of archive Pages.
-      def generate_archive_pages(site, posts, layout, path, title, pattern)
+      def generate_archive_pages(site, posts, layout, path, title)
         pages = []
 
-        collate(posts, pattern).each do |_, collated_posts|
-          pages << ArchivePage.new(site, site.source, layout, path, title, pattern, collated_posts)
+        collate(posts, path).each do |_, collated_posts|
+          pages << ArchivePage.new(site, site.source, layout, path, title, collated_posts)
         end
 
         pages.each_with_index do |page, index|
@@ -89,13 +85,13 @@ module Jekyll
       # Collate an Array of Posts by a date pattern.
       #
       # posts - The Posts to collate
-      # pattern - The date pattern to collate the Posts on
+      # path - The path slug to collate the Posts on
       #
       # Returns a collated Hash of Posts.
-      def collate(posts, pattern)
+      def collate(posts, path)
         collated = {}
         posts.each do |post|
-          key = post.date.strftime(pattern)
+          key = ArchiveURL.new(post).url(path)
           collated[key] ||= []
           collated[key] << post
         end
