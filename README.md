@@ -1,5 +1,7 @@
 # Jekyll Archive Generator
 
+**Deprecation notice:** There is now an official archive plugin, [Jekyll Archives][1]. To avoid confusion and duplication of effort, 0.4.0 is the final release of Jekyll Archive Generator and you should use Jekyll Archives instead.
+
 This plugin creates a set of archive pages for a Jekyll website.
 
 Oddly, Jekyll doesn't include a date-based archive for posts out of the box. For example, if you have a permalink structure like `blog/2014/01/01/title`, URL hacking won't work because going to `blog/2014` will return 404 Page Not Found.
@@ -96,7 +98,7 @@ The collection of posts for the specific time period in the archive. For example
 
 A paginator to navigate between archive pages at a specific date "resolution". For example, on the archive page for May 2014, the paginator will let you navigate between months. On the archive page for May 26, 2014, the paginator will let you navigate between days.
 
-This paginator contains many of the same values found in [Jekyll's native paginator][1] (description of variables copied from that page):
+This paginator contains many of the same values found in [Jekyll's native paginator][2] (description of variables copied from that page):
 
 * `page.archive.paginator.page`: the current page number
 * `page.archive.paginator.total_pages`: the number of pagination pages
@@ -107,32 +109,33 @@ This paginator contains many of the same values found in [Jekyll's native pagina
 
 ## Acknowledgments
 
-This plug is inspired by the work done by [Nicholas Lindley][2]:
+This plug is inspired by the work done by [Nicholas Lindley][3]:
 
-* [archivepage.rb][3]
-* [archivegenerator.rb][4]
+* [archivepage.rb][4]
+* [archivegenerator.rb][5]
 
-And by [Ilkka Laukkanen][5]:
+And by [Ilkka Laukkanen][6]:
 
-* [archivepage.rb][6]
-* [archivegenerator.rb][7]
+* [archivepage.rb][7]
+* [archivegenerator.rb][8]
 
 ## Copyright and license
 
-This plugin is copyright © 2013–2015 [Mark Trapp][8]. All rights reserved. It is made available via the MIT license. A copy of the license can be found in the `LICENSE` file.
+This plugin is copyright © 2013–2015 [Mark Trapp][9]. All rights reserved. It is made available via the MIT license. A copy of the license can be found in the `LICENSE` file.
 
 ## Related links
 
-* [Canonical project page][9]
-* [RubyGems project page][10]
+* [Canonical project page][10]
+* [RubyGems project page][11]
 
-[1]: http://jekyllrb.com/docs/pagination/ "Jekyll Documentation — Pagination"
-[2]: http://www.thisoneplace.com "Nicholas Lindley’s website"
-[3]: https://gist.github.com/nlindley/6409441 "Nicholas Lindley’s archivegenerator.rb"
-[4]: https://gist.github.com/nlindley/6409459 "Nicholas Lindley’s archivepage.rb"
-[5]: http://ilkka.github.io "Ilkka Laukkanen’s website"
-[6]: https://gist.github.com/ilkka/707909 "Ilkka Laukkanen’s archivegenerator.rb"
-[7]: https://gist.github.com/ilkka/707020 "Ilkka Laukkanen’s archivepage.rb"
-[8]: http://marktrapp.com "Mark Trapp’s website"
-[9]: http://marktrapp.com/projects/jekyll-archive "jekyll-archive project page"
-[10]: https://rubygems.org/gems/jekyll-itafroma-archive "RubyGems project page"
+[1]: https://github.com/jekyll/jekyll-archives "Jekyll Archives project page"
+[2]: http://jekyllrb.com/docs/pagination/ "Jekyll Documentation — Pagination"
+[3]: http://www.thisoneplace.com "Nicholas Lindley’s website"
+[4]: https://gist.github.com/nlindley/6409441 "Nicholas Lindley’s archivegenerator.rb"
+[5]: https://gist.github.com/nlindley/6409459 "Nicholas Lindley’s archivepage.rb"
+[6]: http://ilkka.github.io "Ilkka Laukkanen’s website"
+[7]: https://gist.github.com/ilkka/707909 "Ilkka Laukkanen’s archivegenerator.rb"
+[8]: https://gist.github.com/ilkka/707020 "Ilkka Laukkanen’s archivepage.rb"
+[9]: http://marktrapp.com "Mark Trapp’s website"
+[10]: http://marktrapp.com/projects/jekyll-archive "jekyll-archive project page"
+[11]: https://rubygems.org/gems/jekyll-itafroma-archive "RubyGems project page"
