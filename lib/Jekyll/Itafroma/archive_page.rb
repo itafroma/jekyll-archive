@@ -61,7 +61,7 @@ module Jekyll
       #
       # Returns a String containing the ArchivePage url.
       def url
-        ArchiveURL.new(@posts.first).url(@path)
+        File.join(ArchiveSubstitution.new(@posts.first).url(@path).to_s, 'index.html')
       end
 
       # Add the ArchivePage-specific data to the regular Page data.

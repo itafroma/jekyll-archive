@@ -1,5 +1,5 @@
 #
-# An archive URL.
+# Substitution for strings used in Jekyll Archive Generator.
 #
 # Author:: Mark Trapp
 # Copyright: Copyright (c) 2015 Mark Trapp
@@ -12,9 +12,9 @@
 
 module Jekyll
   module Itafroma
-    class ArchiveURL
+    class ArchiveSubstitution
 
-      # Initialize a new ArchiveURL.
+      # Initialize a new ArchiveSubstitution.
       #
       # post - The post to generate a URL for.
       #
@@ -23,20 +23,29 @@ module Jekyll
         @post = post
       end
 
-      # Generate the URL for the post.
+      # Substitute placeholders within a string with data from the post.
       #
-      # Returns a String containing the URL.
-      def url(path)
-        compiled_path = URL.new({
-          :template => path,
-          :placeholders => url_placeholders
-        }).to_s
-        File.join(compiled_path, 'index.html')
+      # Adapted from Jekyll::URL::generate_url.
+      #
+      # Returns a string containing the substituted post data.
+      def translate(template)
+        placeholders.inject(template) do |result, token|
+          break result if result.index(':').nil?
+          result.gsub(/:#{token.first}/, token.last)
+        end
       end
 
-      # Returns a hash of URL placeholder names (as symbols) mapping to the
-      # desired placeholder replacements. For details see Jekyll's "url.rb"
-      def url_placeholders
+      # Returns a Jekyll URL object for the given template.
+      def url(template)
+        URL.new({
+          :template => template,
+          :placeholders => placeholders
+        })
+      end
+
+      # Returns a hash of placeholder names (as symbols) mapping to the desired
+      # placeholder replacements.
+      def placeholders
         {
           :year        => @post.date.strftime('%Y'),
           :short_year  => @post.date.strftime('%y'),

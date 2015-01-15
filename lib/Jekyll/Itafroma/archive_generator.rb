@@ -97,7 +97,7 @@ module Jekyll
       def collate(posts, path)
         collated = {}
         posts.each do |post|
-          key = ArchiveURL.new(post).url(path)
+          key = ArchiveSubstitution.new(post).translate(path)
           collated[key] ||= []
           collated[key] << post
         end
