@@ -15,6 +15,12 @@ module Jekyll
       # This generator is safe from arbitrary code execution.
       safe true
 
+      DEFAULT_LAYOUT = 'archive'
+      DEFAULT_PATH = '/'
+      DEFAULT_TITLE = 'Blog archive'
+      DEFAULT_INCLUSIONS = {}
+      DEFAULT_EXCLUSIONS = {}
+
       # Generate archive pages.
       #
       # site - The site.
@@ -29,12 +35,12 @@ module Jekyll
         end
 
         archives.each do |archive|
-          layout = archive['layout'] || 'archive'
+          layout = archive['layout'] || DEFAULT_LAYOUT
           if site.layouts.key? layout
-            path = archive['path'] || '/'
-            title = archive['title'] || 'Blog archive'
+            path = archive['path'] || DEFAULT_PATH
+            title = archive['title'] || DEFAULT_TITLE
 
-            inclusions = archive['include'] || {}
+            inclusions = archive['include'] || DEFAULT_INCUSIONS
             posts = if inclusions.empty? 
               site.posts
             else 
@@ -45,7 +51,7 @@ module Jekyll
               end
             end
 
-            exclusions = archive['exclude'] || {}
+            exclusions = archive['exclude'] || DEFAULT_EXCLUSIONS
             exclusions.each do |key, exclusion|
               posts.reject! do |post|
                 (post[key] & exclusion).any?
