@@ -41,13 +41,10 @@ module Jekyll
             title = archive['title'] || DEFAULT_TITLE
 
             inclusions = archive['include'] || DEFAULT_INCLUSIONS
-            posts = if inclusions.empty? 
-              site.posts
-            else 
-              site.posts.select do |post|
-                inclusions.any? do |key, inclusion|
-                  (post[key] & inclusion).any?
-                end
+            posts = site.posts.dup
+            inclusions.any? do |key, inclusion|
+              posts.select! do |post|
+                (post[key] & inclusion).any?
               end
             end
 
