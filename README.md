@@ -30,6 +30,7 @@ This plugin's configuration is contained within the `archive` key and supports m
 archive:
     - path: /blog/:year
       layout: archive_blog
+      title: Blog archive — :year
       include:
         tags: ['PHP']
       exclude:
@@ -37,6 +38,7 @@ archive:
         tags: ['drafts']
     - path: /blog/:year/:month
       layout: archive_blog
+      title: Blog archive — :month :year
       include:
         tags: ['PHP']
       exclude:
@@ -44,6 +46,7 @@ archive:
         tags: ['drafts']
     - path: /blog/:year/:month/:day
       layout: archive_blog
+      title: Blog archive — :month :day, :year
       include:
         tags: ['PHP']
       exclude:
@@ -80,7 +83,7 @@ The name of the layout to use for the archive pages. An example layout named `ar
 
 #### title
 
-The title of the archive pages.
+The tokenized title of the archive pages. This uses the same tokens available for the `path` directive above. For example, `Blog archive — :year` will generate archive page titles like *Blog Archive — 2010*, *Blog Archive — 2011*, and so on.
 
 **Default value:** `Blog archive`
 

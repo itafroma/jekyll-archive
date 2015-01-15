@@ -54,7 +54,7 @@ module Jekyll
       #
       # Returns a String containing the ArchivePage title.
       def title
-        @title
+        ArchiveSubstitution.new(@posts.first).translate(@title)
       end
 
       # Generate the ArchivePage url.
