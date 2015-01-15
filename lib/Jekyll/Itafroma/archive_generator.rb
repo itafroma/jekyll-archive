@@ -40,7 +40,7 @@ module Jekyll
             path = archive['path'] || DEFAULT_PATH
             title = archive['title'] || DEFAULT_TITLE
 
-            inclusions = archive['include'] || DEFAULT_INCUSIONS
+            inclusions = archive['include'] || DEFAULT_INCLUSIONS
             posts = if inclusions.empty? 
               site.posts
             else 
