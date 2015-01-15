@@ -30,7 +30,7 @@ module Jekyll
         archives = site.config['archive'] || []
 
         if archives.is_a? Hash
-          puts 'Warning: the configuration format used for Jekyll Archive Generator is deprecated. Please see README for the new format.'
+          warn 'The configuration format used for Jekyll Archive Generator is deprecated. Please see README for the new format.'
           archives = [archives]
         end
 
