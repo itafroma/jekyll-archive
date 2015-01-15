@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'jekyll-itafroma-archive'
-  s.version     = '0.3.0'
-  s.date        = '2015-01-07'
+  s.version     = '0.4.0'
+  s.date        = '2015-01-15'
   s.summary     = 'Jekyll plugin to create a set of archive pages.'
   s.description = <<-EOF
     Jekyll Archive Generator creates a set of archive pages for a Jekyll
@@ -25,4 +25,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage    = 'http://marktrapp.com/projects/jekyll-archive'
   s.license     = 'MIT'
+
+  s.required_ruby_version = '>= 2.0.0'
+  s.add_runtime_dependency 'jekyll', '~> 2.1'
 end
