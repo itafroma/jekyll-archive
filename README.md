@@ -157,6 +157,6 @@ This plugin is copyright © 2013–2015 [Mark Trapp][9]. All rights reserved. It
 [6]: http://ilkka.github.io "Ilkka Laukkanen’s website"
 [7]: https://gist.github.com/ilkka/707909 "Ilkka Laukkanen’s archivegenerator.rb"
 [8]: https://gist.github.com/ilkka/707020 "Ilkka Laukkanen’s archivepage.rb"
-[9]: http://marktrapp.com "Mark Trapp’s website"
-[10]: http://marktrapp.com/projects/jekyll-archive "jekyll-archive project page"
+[9]: https://marktrapp.com "Mark Trapp’s website"
+[10]: https://marktrapp.com/projects/jekyll-archive "jekyll-archive project page"
 [11]: https://rubygems.org/gems/jekyll-itafroma-archive "RubyGems project page"

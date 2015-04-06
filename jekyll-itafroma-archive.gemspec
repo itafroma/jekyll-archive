@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
     'lib/jekyll/itafroma/archive_pager.rb',
     'lib/jekyll/itafroma/archive_substitution.rb',
   ]
-  s.homepage    = 'http://marktrapp.com/projects/jekyll-archive'
+  s.homepage    = 'https://marktrapp.com/projects/jekyll-archive'
   s.license     = 'MIT'
 
   s.required_ruby_version = '>= 2.0.0'
